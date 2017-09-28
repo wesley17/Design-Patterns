@@ -1,0 +1,95 @@
+# Design_Patterns_Factory_Method
+
+package br.padroes.abstractFactory;
+
+public interface CarroPopular {
+		void exibirInfoPopular();
+}
+
+package br.padroes.abstractFactory;
+
+public interface CarroSedan {
+		void exibirInfoSedan();
+}
+
+package br.padroes.abstractFactory;
+
+public class Cliente {
+		public static void main(String[] args){
+			
+			FabricaDeCarro fabrica = new FabricaFiat();
+			CarroSedan sedan = fabrica.criarCarroSedan();
+			
+			CarroPopular popular = fabrica.criarCarroPopular();
+			sedan.exibirInfoSedan();
+			System.out.println();
+			popular.exibirInfoPopular();
+			System.out.println();
+
+			fabrica = new FabricaFord();
+			sedan = fabrica.criarCarroSedan();
+			popular = fabrica.criarCarroPopular();
+			sedan.exibirInfoSedan();
+			System.out.println();
+			popular.exibirInfoPopular();
+		}
+
+}
+
+package br.padroes.abstractFactory;
+
+public interface FabricaDeCarro {
+	CarroSedan criarCarroSedan();
+	CarroPopular criarCarroPopular();
+		
+
+}
+package br.padroes.abstractFactory;
+
+public class FabricaFiat implements FabricaDeCarro{
+		
+
+	public CarroSedan criarCarroSedan(){
+				return new Siena();
+		}
+			
+		public CarroPopular criarPopular(){
+				return new Palio();
+		}
+
+		public CarroPopular criarCarroPopular() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+}
+package br.padroes.abstractFactory;
+
+public class FabricaFord implements FabricaDeCarro {
+
+	public CarroSedan criarCarroSedan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public CarroPopular criarCarroPopular() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+package br.padroes.abstractFactory;
+
+public class Palio implements CarroPopular{
+		public void exibirInfoPopular(){
+			System.out.println("Modelo: Palio\nFábrica: Fiat\nCategoria: Popular");
+		}
+}
+
+package br.padroes.abstractFactory;
+
+public class Siena implements CarroSedan{
+		public void exibirInfoSedan(){
+			System.out.println("Modelo: Siena\nFábrica: Fiat\nCategoria: Sedan");
+		}
+}
